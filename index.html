@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PWA Demo</title>
+    <link rel="stylesheet" href="/style/style.css" />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <ul id="list">
+      <li></li>
+    </ul>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+          .register("/sw.js")
+          .then((res) => console.log("完成 SW 設定!", res))
+          .catch((err) => console.log("Error!", err));
+      }
+    </script>
+    <script>
+      const list = document.getElementById("list");
+      const url = "http://localhost:3000/people";
+
+      axios
+        .get(url)
+        .then((res) => {
+          list.innerHTML = res.data
+            .map((item) => `<li>${item.name}</li>`)
+            .join("");
+        })
+        .catch((err) => {});
+    </script>
+  </body>
+</html>
