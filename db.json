@@ -1,8 +1,19 @@
 {
-  "people": [
+  "todolist": [
     {
-      "id": 0,
-      "name": "Anna"
+      "isComplete": true,
+      "desc": "Something finished",
+      "id": "1"
+    },
+    {
+      "isComplete": true,
+      "desc": "Something to do",
+      "id": "2"
+    },
+    {
+      "desc": "456",
+      "isComplete": false,
+      "id": "W55Dzn0"
     }
   ]
 }

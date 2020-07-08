@@ -5,32 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PWA Demo</title>
     <link rel="stylesheet" href="/style/style.css" />
+    <link rel="manifest" href="/manifest.json" />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
-    <ul id="list">
-      <li></li>
-    </ul>
+    <header class="header">
+      <img class="logo" src="./assets/images/logo_todo.png" alt="" />
+      <div class="unfinished">
+        <span class="count">0</span>
+        <span>個未完成</span>
+      </div>
+    </header>
+    <div id="todoInput" class="input-content">
+      <img class="add" src="./assets/images/ic_add.png" alt="" />
+      <input
+        class="input"
+        placeholder="What need to be done?"
+        value=""
+        type="text"
+      />
+    </div>
+    <ul id="todoList"></ul>
     <script>
       if ("serviceWorker" in navigator) {
         navigator.serviceWorker
-          .register("/sw.js")
+          .register("/sw-generated.js")
           .then((res) => console.log("完成 SW 設定!", res))
           .catch((err) => console.log("Error!", err));
       }
     </script>
-    <script>
-      const list = document.getElementById("list");
-      const url = "http://localhost:3000/people";
-
-      axios
-        .get(url)
-        .then((res) => {
-          list.innerHTML = res.data
-            .map((item) => `<li>${item.name}</li>`)
-            .join("");
-        })
-        .catch((err) => {});
-    </script>
+    <script src="./src/main.js"></script>
   </body>
 </html>
