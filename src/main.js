@@ -2,7 +2,8 @@
   const todoListDOM = document.getElementById("todoList");
   const todoInputDom = document.getElementById("todoInput");
 
-  const url = "http://localhost:3000/todolist";
+  const ip = "192.168.33.138";
+  const url = "http://192.168.33.138:3000/todolist";
   let todoList = [];
 
   // Post todo
