@@ -1,10 +1,10 @@
 {
   "name": "PWA To-Do List",
   "short_name": " To-Do List",
-  "start_url": "/",
+  "start_url": "./?utm_source=web_app_manifest",
   "icons": [
     {
-      "src": "/assets/images/icon-192x192.png",
+      "src": "/assets/images/vue-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
@@ -19,7 +19,7 @@
       "type": "image/png"
     },
     {
-      "src": "/assets/images/icon-512x512.png",
+      "src": "/assets/images/vue-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
