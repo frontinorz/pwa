@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#f2f2f2" />
-
-    <!-- iOS icon -->
+    <!-- iOS Setting -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
     <link
       rel="apple-touch-icon"
       href="./assets/images/icon-192x192.png"
@@ -30,11 +30,20 @@
     <title>PWA Demo</title>
     <link rel="stylesheet" href="./style/style.css" />
     <link rel="manifest" href="./manifest.json" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- <script src="https://unpkg.com/axios/dist/axios.min.js"></script> -->
   </head>
   <body>
+    <div
+      id="pwa-block"
+      data-type=""
+      onclick="clickPWABlockHandler()"
+      class="lnk-download"
+    >
+      Download
+    </div>
     <header class="header">
-      <img class="logo" src="./assets/images/logo_todo.png" alt="" />
+      <img class="logo" src="./assets/images/logo_todo.png" alt="logo" />
+      <a href="about.html">關於</a>
       <div class="unfinished">
         <span class="count">0</span>
         <span>個未完成</span>
@@ -50,13 +59,19 @@
       />
     </div>
     <ul id="todoList"></ul>
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
+      crossorigin="anonymous"
+    ></script>
     <script>
-      if ("serviceWorker" in navigator) {
-        window.addEventListener("load", function () {
-          navigator.serviceWorker.register("./sw-generated.js");
-        });
-      }
+      // if ("serviceWorker" in navigator) {
+      //   window.addEventListener("load", function () {
+      //     navigator.serviceWorker.register("./sw-generated.js");
+      //   });
+      // }
     </script>
+    <script src="./pwa.js"></script>
     <!-- <script src="./src/main.js"></script> -->
   </body>
 </html>
