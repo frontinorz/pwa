@@ -5,16 +5,16 @@ importScripts(
 // Precahce manifest
 // workbox.precaching.precacheAndRoute([{ url: "/", revision: null }]);
 
-workbox.precaching.precacheAndRoute(
+workbox.routing.registerRoute(
   /.*\.(json)$/,
   new workbox.strategies.StaleWhileRevalidate({
-    cacheName: "json-file-cache",
+    cacheName: "manifest-file-cache",
   })
 );
 
 // 目前因為語系導致頁面變化，改採用 NetworkFirst
 workbox.routing.registerRoute(
-  new RegExp("/index.html"),
+  /.*\.(html)$/,
   new workbox.strategies.NetworkFirst({
     cacheName: "page-cache",
   })
@@ -27,6 +27,10 @@ workbox.routing.registerRoute(
   })
 );
 
-self.addEventListener("install", function () {
-  self.skipWaiting();
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
+
+workbox.precaching.cleanupOutdatedCaches();
