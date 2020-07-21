@@ -1,7 +1,16 @@
 importScripts(
   "https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js"
 );
-// importScripts("/workbox-sw-5.1.2.js");
+
+// Precahce manifest
+// workbox.precaching.precacheAndRoute([{ url: "/", revision: null }]);
+
+workbox.precaching.precacheAndRoute(
+  /.*\.(json)$/,
+  new workbox.strategies.StaleWhileRevalidate({
+    cacheName: "json-file-cache",
+  })
+);
 
 // 目前因為語系導致頁面變化，改採用 NetworkFirst
 workbox.routing.registerRoute(

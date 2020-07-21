@@ -18,9 +18,18 @@ window.addEventListener("load", (event) => {
 // 註冊 sw.js
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
-    navigator.serviceWorker.register("./sw.js");
+    navigator.serviceWorker.register("/sw.js").then(function (registration) {
+      // console.log('sw registered')
+    });
   });
 }
+
+// Handle offline situation
+window.onload = function () {
+  if (!navigator.onLine) {
+    alert("Please connect to internet to activate fully functional.");
+  }
+};
 
 window.addEventListener("beforeinstallprompt", (e) => {
   console.log("beforeinstallprompt event");
@@ -48,13 +57,13 @@ window.addEventListener("beforeinstallprompt", (e) => {
 
 // 決定顯示登入頁面的 下載 與 打開 app 的按鈕
 function initPWA() {
+  // console.log('initPWA', pwaInstallStatus)
+
   if (pwaInstallStatus == true) {
-    console.log("is installed");
     // 已下載(顯示 open)
     setPWABlock("open");
   } else if (pwaInstallStatus == false) {
     // 未下載(顯示 download)
-    console.log("not installed");
     setPWABlock("download");
   }
 }
@@ -70,7 +79,7 @@ function setPWABlock(type) {
     $("#pwa-block").attr("class", openClass);
   } else if (type == "download") {
     $("#pwa-block").data("type", "download");
-    $("#pwa-block").text("Download App");
+    $("#pwa-block").text("App");
     $("#pwa-block").attr("class", downloadClass);
   } else if (type == "installing") {
     $("#pwa-block").data("type", "installing");
@@ -87,7 +96,7 @@ function setPWABlock(type) {
 function clickPWABlockHandler() {
   const type = $("#pwa-block").data("type");
   if (type == "open") {
-    window.open("./");
+    window.open("/");
   } else if (type == "download") {
     deferredPrompt.prompt();
   }
