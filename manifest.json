@@ -2,7 +2,7 @@
   "name": "PWA To-Do List",
   "short_name": "To-Do List",
   "start_url": "./about.html",
-  "scope": "./",
+  "scope": "./about.html",
   "icons": [
     {
       "src": "./assets/images/icon-192x192.png",
