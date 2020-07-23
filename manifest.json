@@ -1,7 +1,7 @@
 {
   "name": "PWA To-Do List",
   "short_name": "To-Do List",
-  "start_url": "./?utm_source=web_app_manifest",
+  "start_url": "/?utm_source=web_app_manifest",
   "scope": "/",
   "icons": [
     {
