@@ -1,7 +1,7 @@
 {
   "name": "PWA To-Do List",
   "short_name": "To-Do List",
-  "start_url": "./",
+  "start_url": "./about.html",
   "scope": "./",
   "icons": [
     {
