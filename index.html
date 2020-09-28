@@ -1,77 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=720" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <meta
-      name="apple-mobile-web-app-status-bar-style"
-      content="black-translucent"
-    />
-    <meta name="theme-color" content="#f2f2f2" />
-    <!-- iOS Setting -->
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link
-      rel="apple-touch-icon"
-      href="./assets/images/icon-192x192.png"
-      sizes="192x192"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="./assets/images/icon-256x256.png"
-      sizes="256x256"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="./assets/images/icon-384x384.png"
-      sizes="384x384"
-    />
-    <link
-      rel="apple-touch-icon"
-      href="./assets/images/icon-512x521.png"
-      sizes="512x521"
-    />
 
-    <title>PWA Demo</title>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=720" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="theme-color" content="#f2f2f2" />
+  <!-- iOS Setting -->
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="apple-touch-icon" href="./assets/images/icon-192x192.png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./assets/images/icon-256x256.png" sizes="256x256" />
+  <link rel="apple-touch-icon" href="./assets/images/icon-384x384.png" sizes="384x384" />
+  <link rel="apple-touch-icon" href="./assets/images/icon-512x521.png" sizes="512x521" />
 
-    <link rel="stylesheet" href="./style/style.css" />
-    <link rel="manifest" href="./manifest.json" />
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-  </head>
-  <body>
-    <div
-      id="pwa-block"
-      data-type=""
-      onclick="clickPWABlockHandler()"
-      class="lnk-download"
-    >
-      ....
+  <title>PWA Demo</title>
+
+  <link rel="stylesheet" href="./style/style.css" />
+  <link rel="manifest" href="https://gw-vue-todo-pwa.herokuapp.com/manifest-test.json" />
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <div id="pwa-block" data-type="" onclick="clickPWABlockHandler()" class="lnk-download">
+    ....
+  </div>
+  <header class="header">
+    <img class="logo" src="./assets/images/logo_todo.png" alt="logo" />
+    <a href="./about.html">關於</a>
+    <a href="https://www.google.com.tw/maps/preview?hl=zh-TW">Map</a>
+    <div class="unfinished">
+      <span class="count">0</span>
+      <span>個未完成</span>
     </div>
-    <header class="header">
-      <img class="logo" src="./assets/images/logo_todo.png" alt="logo" />
-      <a href="./about.html">關於</a>
-      <a href="https://www.google.com.tw/maps/preview?hl=zh-TW">Map</a>
-      <div class="unfinished">
-        <span class="count">0</span>
-        <span>個未完成</span>
-      </div>
-    </header>
-    <div id="todoInput" class="input-content">
-      <img class="add" src="./assets/images/ic_add.png" alt="" />
-      <input
-        class="input"
-        placeholder="What need to be done?"
-        value=""
-        type="text"
-      />
-    </div>
-    <ul id="todoList"></ul>
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-      integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs="
-      crossorigin="anonymous"
-    ></script>
-    <script src="./pwa-ad.js"></script>
-    <!-- <script src="./src/main.js"></script> -->
-  </body>
+  </header>
+  <div id="todoInput" class="input-content">
+    <img class="add" src="./assets/images/ic_add.png" alt="" />
+    <input class="input" placeholder="What need to be done?" value="" type="text" />
+  </div>
+  <ul id="todoList"></ul>
+  <div class="pushbutton">接收推播</div>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+    integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+  <script src="./pwa-ad.js"></script>
+  <script>
+    document.querySelector('.pushbutton').addEventListener('click', () => {
+      askForNotificationPermission();
+    })
+
+    // 跳出推播權限請求視窗
+    function askForNotificationPermission() {
+      Notification.requestPermission(result => {
+        if (result === 'granted') {
+          console.log(result)
+          // configurePushSub()
+        }
+      });
+    }
+  </script>
+  <!-- <script src="./src/main.js"></script> -->
+</body>
+
 </html>
